@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   # get 'users/show'
   # get 'homes/about'
   get "home/about", to: 'homes#about', as: :homes_about
