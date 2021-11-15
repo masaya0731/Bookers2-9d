@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root to: 'homes#top'
   get 'relationships/create'
   get 'relationships/destroy'
-  # get 'users/show'
-  # get 'homes/about'
   get "home/about", to: 'homes#about', as: :homes_about
-  # post "users/:id", to: 'users#create'
-  # post "books/:id", to: 'books#create'
-  devise_for :users
-  root to: 'homes#top'
-  resources :users, only: [:show, :create, :index, :edit, :update]
+
+  resources :users, only: [:show, :create, :index, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+      get :follows, on: :member
+      get :followers, on: :member
+  end
+
   resources :books, only: [:show, :edit, :create, :index, :destroy, :update] do
     resources :book_comments, only:[:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
