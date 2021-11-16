@@ -5,12 +5,10 @@
           <%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
         <ul>
           <% @book.errors.full_messages.each do |message| %>
-            <li>
-              <%= message %>
-            </li>
-            <% end %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
-        <% end %>
+      <% end %>
     </div>
     <div class="row">
       <div class="col-md-3">
@@ -32,23 +30,23 @@
           <tbody>
             <% @books.each do |book| %>
               <% user = User.find(book.user_id) %>
-                <tr>
-                  <td>
-                    <%= link_to user_path(user.id) do %>
-                      <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to book_path(book.id) do %>
-                      <%= book.title %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= book.body %>
-                  </td>
-                  <%= render 'favorites/favorite', book: book %>
-                  <td>コメント数：<%= book.book_comments.count %></td>
-                </tr>
+              <tr>
+                <td>
+                  <%= link_to user_path(user.id) do %>
+                    <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to book_path(book.id) do %>
+                    <%= book.title %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= book.body %>
+                </td>
+                <%= render 'favorites/favorite', book: book %>
+                <td>コメント数：<%= book.book_comments.count %></td>
+              </tr>
           　<% end %>
           </tbody>
         </table>

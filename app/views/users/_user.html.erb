@@ -1,51 +1,52 @@
 <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg",size: "100x100" %>
-      <table class="table">
-        <tbody>
-          <tr></tr>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+      <tr>
+        <th>follows</th>
+        <td>
+          <%= link_to follows_user_path(user) do %>
+            <%= user.active_relationships.count %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>followers</th>
+        <td>
+          <%= link_to followers_user_path(user) do %>
+            <%= user.passive_relationships.count %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <% if user == current_user %>
+          <th colspan="2">
+            <%= link_to edit_user_path(current_user), class:"btn btn-default btn-block" do %> <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            <% end %>
+          </th>
+        <% else %>
           <tr>
-            <th>name</th>
-            <th><%= user.name %></th>
+            <td style="border:none;">
+              <% if user.followed_by?(current_user) %>
+                <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-primary" %>
+              <% else %>
+                <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success" %>
+              <% end %>
+            </td>
           </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= user.introduction %></th>
-          </tr>
-          <tr>
-      <th>follows</th>
-      <td>
-        <%= link_to follows_user_path(user) do %>
-          <%= user.active_relationships.count %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>followers</th>
-      <td>
-        <%= link_to followers_user_path(user) do %>
-          <%= user.passive_relationships.count %></td>
         <% end %>
       </tr>
-    </tr>
-    <tr>
-      <% if user == current_user %>
-        <th colspan="2">
-          <%= link_to edit_user_path(current_user), class:"btn btn-default btn-block" do %>
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-          <% end %>
-        </th>
-      <% else %>
-        <tr>
-          <td style="border:none;">
-          <% if user.followed_by?(current_user) %>
-            <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-primary" %>
-          <% else %>
-              <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success" %>
-          <% end %></td>
-        </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <%= link_to (edit_user_path(user.id)), class:"btn btn-outline-secondary btn-block fas fa-user-cog" do %>
       <% end %>
-    </tr>
-        </tbody>
-      </table>
-      <div class="row">
-        <%= link_to (edit_user_path(user.id)), class:"btn btn-outline-secondary btn-block fas fa-user-cog" do %><% end %>
-      </div>
+  </div>
