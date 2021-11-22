@@ -4,10 +4,10 @@ class BookCommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @book_comment = current_user.book_comments.new(book_comment_params)
     @book_comment.book_id = @book.id
+    @user = @book.user
     if @book_comment.save
       render :book_comment
     else
-      @user = @book.user
       @newbook = Book.new
       render "books/show"
     end
@@ -16,6 +16,7 @@ class BookCommentsController < ApplicationController
   def destroy
     @book_comment = BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
     @book = Book.find(params[:book_id])
+    @user = @book.user
     render :book_comment
   end
 
