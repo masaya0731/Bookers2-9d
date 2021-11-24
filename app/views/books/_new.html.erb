@@ -9,7 +9,7 @@
     </div>
 
     <div class="field" id="star">
-      <%= f.label :rate, "Rate：" %>
+      <%= f.label :rate, "Rate" %>
       <%= f.hidden_field :rate, id: :review_star %>
     </div>
   　<script>
@@ -18,7 +18,7 @@
         starOff:  '<%= asset_path('star-off.png') %>',
         starOn : '<%= asset_path('star-on.png') %>',
         starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'post[rate]',
+        scoreName: 'book[rate]',
         half: true,
       });
   </script>

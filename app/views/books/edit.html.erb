@@ -21,11 +21,14 @@
           <label for="inputTitle">Title</label><br>
           <%= f.text_field :title, class:"form-control book_title"%><br>
         </div>
-        <div class="form-group">
+        <div class="form-group", style="margin-bottom: 0;">
           <label for="inputbody">Opinion</label><br>
           <%= f.text_area :body, class:"form-control book_body" %><br>
         </div>
-        <div class="form-group">
+        <div class="relative-book-rate">
+          <%= render 'books/rate', book: @book %>
+        </div>
+        <div class="form-group mt-4">
           <%= f.submit "Update Book", class:"btn btn-success" %><br>
         </div>
       <% end %>
