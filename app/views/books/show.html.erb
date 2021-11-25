@@ -14,14 +14,14 @@
               <td>
                 <%= link_to user_path(@user.id) do %>
                   <%= attachment_image_tag(@user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40") %><br>
-                <%= @user.name %>
+                　<%= @user.name %>
                 <% end %>
               </td>
               <td>
                 <%= link_to @book.title, book_path(@book) %>
               </td>
               <td><%= @book.body %></td>
-              <td id="favorite_buttons_<%= @book.id %>">
+              <td id="favorite_buttons_<%= @book.id %>" style="padding-left: 0;">
                 <%= render 'favorites/favorite', book: @book %>
               </td>
               <td class="relative-book-rate">

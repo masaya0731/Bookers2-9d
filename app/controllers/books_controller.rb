@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    if params[:sort_create]
+      @books = Book.latest
+    else
+      @books = Book.all
+    end
     @book = Book.new
     @user = current_user
   end
