@@ -51,10 +51,10 @@
                 <td id="favorite_buttons_<%= book.id %>">
                   <%= render 'favorites/favorite', book: book %>
                 </td>
+                <td>コメント数：<%= book.book_comments.count %></td>
                 <td class="relative-book-rate">
                   <%= render 'books/rate', book: book %>
                 </td>
-                <td>コメント数：<%= book.book_comments.count %></td>
               </tr>
           　<% end %>
           </tbody>
