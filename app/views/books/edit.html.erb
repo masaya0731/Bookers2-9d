@@ -1,52 +1,52 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h1>Editing Book</h1>
-      <div id = "error_explanation">
-        <% if @book.errors.any? %>
-          <% if @book.errors.count == 1 %>
-            <h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
-          <% else %>
-            <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
-          <% end %>
-          <ul>
-            <% @book.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h1>Editing Book</h1>
+        <div id = "error_explanation">
+          <% if @book.errors.any? %>
+            <% if @book.errors.count == 1 %>
+              <h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+            <% else %>
+              <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
             <% end %>
-          </ul>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <%= form_with model:@book, local:true do |f| %>
+          <div class="form-group">
+            <label for="inputTitle">Title</label><br>
+            <%= f.text_field :title, class:"form-control book_title"%><br>
+          </div>
+          <div class="form-group", style="margin-bottom: 0;">
+            <label for="inputbody">Opinion</label><br>
+            <%= f.text_area :body, class:"form-control book_body" %><br>
+          </div>
+          <div class="relative-book-rate">
+            <span id="star-rate-<%= @book.id %>"></span>
+            <script>
+            　$('#star-rate-<%= @book.id %>').empty();
+              $('#star-rate-<%= @book.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= @book.rate %>
+              });
+            </script>
+          </div>
+          <div class="form-group mt-4">
+            <%= f.submit "Update Book", class:"btn btn-success" %><br>
+          </div>
         <% end %>
+        <%= link_to "Show", book_path(@book.id) %>
+        |
+        <%= link_to "Back", books_path %>
       </div>
-      <%= form_with model:@book, local:true do |f| %>
-        <div class="form-group">
-          <label for="inputTitle">Title</label><br>
-          <%= f.text_field :title, class:"form-control book_title"%><br>
-        </div>
-        <div class="form-group", style="margin-bottom: 0;">
-          <label for="inputbody">Opinion</label><br>
-          <%= f.text_area :body, class:"form-control book_body" %><br>
-        </div>
-        <div class="relative-book-rate">
-          <span id="star-rate-<%= @book.id %>"></span>
-          <script>
-          　$('#star-rate-<%= @book.id %>').empty();
-            $('#star-rate-<%= @book.id %>').raty({
-              size: 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              half: true,
-              readOnly: true,
-              score: <%= @book.rate %>
-            });
-          </script>
-        </div>
-        <div class="form-group mt-4">
-          <%= f.submit "Update Book", class:"btn btn-success" %><br>
-        </div>
-      <% end %>
-      <%= link_to "Show", book_path(@book.id) %>
-      |
-      <%= link_to "Back", books_path %>
     </div>
   </div>
-</div>
