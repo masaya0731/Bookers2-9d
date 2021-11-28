@@ -7,6 +7,10 @@
       <label for="book_opinion">Opinion</label>
       <%= f.text_area :body, class:"form-control book_body"%>
     </div>
+    <div class="form-group">
+      <label for="book_category">Category</label>
+      <%= f.text_field :category, class:"form-control book_category" %>
+    </div>
     <span>Rate</span>
     <div class="field" id="star" style="display: inline-block;">
       <%= f.label :rate %>

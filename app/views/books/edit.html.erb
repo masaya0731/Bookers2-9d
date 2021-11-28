@@ -21,9 +21,13 @@
             <label for="inputTitle">Title</label><br>
             <%= f.text_field :title, class:"form-control book_title"%><br>
           </div>
-          <div class="form-group", style="margin-bottom: 0;">
+          <div class="form-group">
             <label for="inputbody">Opinion</label><br>
             <%= f.text_area :body, class:"form-control book_body" %><br>
+          </div>
+          <div class="form-group">
+            <label for="book_category">Category</label>
+            <%= f.text_field :category, class:"form-control book_category" %>
           </div>
           <div class="relative-book-rate">
             <span id="star-rate-<%= @book.id %>"></span>
