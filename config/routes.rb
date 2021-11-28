@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'categories/index'
   devise_for :users
 
   root to: 'homes#top'
   get "home/about", to: 'homes#about', as: :homes_about
   get '/search', to: 'searches#search'
+  get 'categories/index'
 
   resources :users, only: [:show, :create, :index, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
