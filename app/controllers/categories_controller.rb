@@ -1,6 +1,12 @@
 class CategoriesController < ApplicationController
   def index
-    @books = Book.where("category LIKE ? ",'%' + params[:search] + '%')
+
+    if params[:search]
+      @books = Book.where("category LIKE ? ",'%' + params[:search] + '%')
+    else
+      @books = Book.all
+    end
+
     @user = current_user
     @book = Book.new
   end
