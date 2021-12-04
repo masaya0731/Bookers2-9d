@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
     if params[:search]
       @books = Book.where("category LIKE ? ",'%' + params[:search] + '%')
     else
-      @books = Book.all
+      @books = Book.where(category: :search)
     end
 
     @user = current_user

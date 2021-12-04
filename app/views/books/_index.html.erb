@@ -24,7 +24,7 @@
           </td>
           <td><%= book.body %></td>
           <td>
-            <%= link_to categories_index_path do %>
+            <%= link_to categories_index_path(search: book.category) do %>
               <%= book.category %>
             <% end %>
           </td>
