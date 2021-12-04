@@ -21,11 +21,7 @@
               <%= link_to @book.title, book_path(@book) %>
             </td>
             <td><%= @book.body %></td>
-            <td>
-            <%= link_to categories_index_path do %>
-              <%= @book.category %>
-            <% end %>
-            </td>
+            <td><%= @book.category %></td>
             <td id="favorite_buttons_<%= @book.id %>" style="padding-left: 0;">
               <%= render 'favorites/favorite', book: @book %>
             </td>
